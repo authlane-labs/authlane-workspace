@@ -1,6 +1,7 @@
 # AuthLane Workspace
 
-![React](https://img.shields.io/badge/React-18-61dafb?logo=react)
+![React](https://img.shields.io/badge/React-19-61dafb?logo=react)
+![React Compiler](https://img.shields.io/badge/React_Compiler-enabled-149eca)
 ![Flask](https://img.shields.io/badge/Flask-REST-000000?logo=flask)
 ![MariaDB](https://img.shields.io/badge/MariaDB-SQLAlchemy_Async-003545?logo=mariadb)
 ![Branch](https://img.shields.io/badge/branch-develop-2ea44f)
