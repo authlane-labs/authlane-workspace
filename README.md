@@ -1,5 +1,10 @@
 # AuthLane Workspace
 
+![React](https://img.shields.io/badge/React-18-61dafb?logo=react)
+![Flask](https://img.shields.io/badge/Flask-REST-000000?logo=flask)
+![MariaDB](https://img.shields.io/badge/MariaDB-SQLAlchemy_Async-003545?logo=mariadb)
+![Branch](https://img.shields.io/badge/branch-develop-2ea44f)
+
 신규 React 인증 화면과 레거시 로그인 폼이 같은 세션/토큰 갱신 규칙을 사용하도록 만든 인증 관리 프로젝트입니다.
 
 ## 저장소 구성
