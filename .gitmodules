@@ -1,0 +1,8 @@
+[submodule "authlane-fe"]
+	path = authlane-fe
+	url = https://github.com/authlane-labs/authlane-fe.git
+	branch = develop
+[submodule "authlane-be"]
+	path = authlane-be
+	url = https://github.com/authlane-labs/authlane-be.git
+	branch = develop
