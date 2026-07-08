@@ -1,57 +1,56 @@
 # AuthLane Workspace
 
-Public portfolio workspace for a Frontend / Product Engineer application.
+신규 React 인증 화면과 레거시 로그인 폼이 같은 세션/토큰 갱신 규칙을 사용하도록 만든 인증 관리 프로젝트입니다.
 
-## Repository topology
+## 저장소 구성
 
-- Organization workspace: `https://github.com/authlane-labs/authlane-workspace`
-- Personal mirror: `https://github.com/cyjoon68/authlane-workspace`
-- App submodule: `https://github.com/authlane-labs/authlane-fe`
-- API submodule: `https://github.com/authlane-labs/authlane-be`
-- Default branch: `develop`
-- `main` branch is retained.
+- FE: [`authlane-fe`](https://github.com/authlane-labs/authlane-fe)
+- BE: [`authlane-be`](https://github.com/authlane-labs/authlane-be)
+- 개인 공개 미러: https://github.com/cyjoon68/authlane-workspace
+- 기본 브랜치: `develop`
 
-## Implementation scope
+## 핵심 기능
 
-- FE: React, TypeScript, `ky`, TanStack Query, D3, jQuery/Ajax compatibility, Playwright smoke test.
-- BE: Python Flask RESTful API, MVC, MariaDB, SQLAlchemy 2.0 Async Mode, pytest, OpenAPI, k6.
-- demo-backend conversion: auth/user/phone/token ideas converted to REST. GraphQL is not used.
+- 로그인/토큰 갱신 흐름
+- 휴대폰 인증 상태 표시
+- refresh token 재사용 차단 흐름
+- React 화면과 jQuery/Ajax 레거시 폼의 인증 API 통합
+- MVC 구조 기반 인증 controller/service/repository 분리
 
-## Local commands
-
-```bash
-git submodule update --init --recursive
-cd authlane-fe && npm install && npm run build
-cd ../authlane-be && python -m venv .venv && . .venv/bin/activate && pip install -r requirements.txt && pytest
-```
-
-## Screenshot
+## 화면
 
 ![AuthLane dashboard](docs/screenshots/dashboard.png)
 
-## API example
+## 기술 스택
 
-```http
-POST /api/auth/login
-POST /api/auth/refresh
-GET /api/dashboard
-PATCH /api/events/{event_id}/status
+- Frontend: React, TypeScript, ky, TanStack Query, jQuery
+- Backend: Python, Flask, SQLAlchemy 2.0 Async Mode
+- Database: MariaDB
+- Infra/Test: Docker Compose, OpenAPI, pytest, k6, Playwright
+
+## 실행
+
+```bash
+git submodule update --init --recursive
+
+cd authlane-fe
+npm install
+npm run dev
+
+cd ../authlane-be
+python3 -m venv .venv
+. .venv/bin/activate
+pip install -r requirements.txt
+pytest
 ```
 
-## ERD
+## 데이터 흐름
 
-```mermaid
-erDiagram
-  users ||--o{ refresh_tokens : owns
-  users ||--o{ auth_identities : has
-  users ||--o{ phone_verifications : requests
-  phone_verifications ||--o{ phone_verification_tokens : issues
+```text
+React Auth UI / Legacy Login
+  -> ky or Ajax adapter
+  -> Flask Controller
+  -> Service
+  -> SQLAlchemy Async
+  -> MariaDB
 ```
-
-## Verification
-
-- `npm install && npm run build`: passed
-- `npm audit --audit-level=critical`: passed, 0 vulnerabilities
-- `npm run test:e2e`: passed, 1 Playwright smoke test
-- `pip install -r requirements.txt && pytest`: passed, 2 tests
-- Screenshot captured with Playwright
